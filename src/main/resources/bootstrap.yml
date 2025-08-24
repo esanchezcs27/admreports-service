@@ -1,0 +1,21 @@
+spring:
+  application.name: admreports-service
+  profiles.active: ${PROFILE}
+  cloud:
+    config:
+      #Propiedades para obtencion de configuraciones del config-service REMOTO
+      enabled: true
+      failFast: true
+      retry:
+        initialInterval: 6000
+        multiplier: 1.5
+        maxInterval: 30000
+      uri: http://config-service:8080 #, http://config-service-git-namespace-dev.appls.cto1.paas.gsnetcloud.corp  #En ambientes PRE y PRO debe colocarse solamente la ruta corta (acceso por nombre de Service, no por Route)
+      #uri: http://localhost:8888
+      name: ${spring.application.name}
+      label: ${LABEL}
+      profile: ${PROFILE}
+  #config:
+    #Propiedades para obtencion de configuraciones en ambiente LOCAL
+    #name: ${spring.application.name}
+    #profile: ${spring.profiles.active}
